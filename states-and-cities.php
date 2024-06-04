@@ -333,11 +333,10 @@ function enqueue_admin_custom_script($hook)
         return;
     }
 
-    wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
-    wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', array(), '4.0.13');
+    wp_enqueue_style('select2-css', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+    wp_enqueue_script('select2-js', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.full.min.js', array('jquery'), '4.0.13', true);
 
-
-    wp_enqueue_script('admin-custom-script', plugins_url('/js/admin-custom-script.js', __FILE__), array('jquery'), '1.0', true);
+    wp_enqueue_script('admin-custom-script', plugins_url('/js/admin-custom-script.js', __FILE__), array('jquery', 'select2-js'), '1.0', true);
 
     // Pass the cities to the script
     wp_localize_script('admin-custom-script', 'citiesData', techiepress_my_cities([]));
