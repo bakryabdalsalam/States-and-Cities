@@ -20,20 +20,22 @@ jQuery(document).ready(function($) {
             var initialCountry = countryField.val();
             if (initialCountry && citiesData[initialCountry]) {
                 cityField.replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
+                cityField = $('#' + fieldName); // Update the reference to the city field
             }
-
+    
             // Update city dropdown on country change
             countryField.on('change', function() {
                 var selectedCountry = $(this).val();
                 if (citiesData[selectedCountry]) {
                     cityField.replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
+                    cityField = $('#' + fieldName); // Update the reference to the city field
                 } else {
                     cityField.replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
+                    cityField = $('#' + fieldName); // Update the reference to the city field
                 }
             });
         }
     }
-
     // Billing city field
     replaceCityField($('#_billing_city'), $('#_billing_country'), '_billing_city');
 
