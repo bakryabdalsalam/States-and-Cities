@@ -27,15 +27,18 @@ function createCityDropdown(cities, fieldName) {
             var initialCountry = countryField.val();
             if (initialCountry && citiesData[initialCountry]) {
                 cityField.replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
+                cityField = $('#' + fieldName); // Update cityField to refer to the new dropdown
             }
-
+    
             // Update city dropdown on country change
             countryField.on('change', function() {
                 var selectedCountry = $(this).val();
                 if (citiesData[selectedCountry]) {
                     cityField.replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
+                    cityField = $('#' + fieldName); // Update cityField to refer to the new dropdown
                 } else {
                     cityField.replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
+                    cityField = $('#' + fieldName); // Update cityField to refer to the new input field
                 }
             });
         }
