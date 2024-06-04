@@ -324,8 +324,8 @@ function techiepress_my_cities( $cities ) {
 
 function enqueue_admin_custom_script($hook)
 {
-    // Ensure this script is only loaded on the order create page
-    if ('post-new.php' != $hook) {
+    // Ensure this script is only loaded on the order create and edit pages
+    if ('post-new.php' != $hook && 'post.php' != $hook) {
         return;
     }
 
