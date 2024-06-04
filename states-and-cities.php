@@ -32,6 +32,11 @@ function notice_wc_city_select_activate() {
     printf( '<div class="error notice-error notice is-dismissible"><p>%s</p></div>', $message );
 }
 
+
+wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
+wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css', array(), '4.0.13');
+
+
 function techiepress_my_cities( $cities ) {
 // Cities for Saudi Arabia
     $cities['SA'] = array(

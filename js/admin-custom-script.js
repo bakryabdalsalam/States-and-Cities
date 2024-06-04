@@ -5,13 +5,20 @@ jQuery(document).ready(function($) {
     }
 
     // Function to create dropdown
-    function createCityDropdown(cities, fieldName) {
-        var cityDropdown = $('<select></select>').attr('name', fieldName).attr('id', fieldName);
-        $.each(cities, function(index, city) {
-            cityDropdown.append($('<option></option>').attr('value', city).text(city));
-        });
-        return cityDropdown;
-    }
+function createCityDropdown(cities, fieldName) {
+    var cityDropdown = $('<select></select>').attr('name', fieldName).attr('id', fieldName);
+    $.each(cities, function(index, city) {
+        cityDropdown.append($('<option></option>').attr('value', city).text(city));
+    });
+
+    // Transform the dropdown into a searchable dropdown using select2
+    cityDropdown.select2({
+        placeholder: 'Select a city',
+        allowClear: true
+    });
+
+    return cityDropdown;
+}
 
     // Replace city input field with dropdown
     function replaceCityField(cityField, countryField, fieldName) {
