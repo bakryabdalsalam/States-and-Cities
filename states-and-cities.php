@@ -318,3 +318,21 @@ function techiepress_my_cities( $cities ) {
     
     return $cities;
 }
+
+function enqueue_admin_custom_script($hook)
+{
+    // Ensure this script is only loaded on the order create page
+    if ('post-new.php' != $hook) {
+        return;
+    }
+
+    if ('shop_order' != get_post_type()) {
+        return;
+    }
+
+    wp_enqueue_script('admin-custom-script', plugins_url('/js/admin-custom-script.js', __FILE__), array('jquery'), '1.0', true);
+
+    // Pass the cities to the script
+    wp_localize_script('admin-custom-script', 'citiesData', techiepress_my_cities([]));
+}
+add_action('admin_enqueue_scripts', 'enqueue_admin_custom_script');
