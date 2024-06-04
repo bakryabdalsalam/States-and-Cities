@@ -13,14 +13,19 @@ jQuery(document).ready(function($) {
         return cityDropdown;
     }
 
-    // Replace city input field with dropdown
     function replaceCityField(cityField, countryField, fieldName) {
         if (cityField.length > 0 && countryField.length > 0) {
+            // Get the current city
+            var currentCity = cityField.val();
+    
             // Initial replacement
             var initialCountry = countryField.val();
             if (initialCountry && citiesData[initialCountry]) {
                 cityField.replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
                 cityField = $('#' + fieldName); // Update the reference to the city field
+    
+                // Set the value of the dropdown to the current city
+                cityField.val(currentCity);
             }
     
             // Update city dropdown on country change
