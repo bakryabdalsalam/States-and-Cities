@@ -348,12 +348,6 @@ function enqueue_admin_custom_script($hook)
         });
         });
     ');
-    // Enable select2 search functionality
-    wp_add_inline_script('admin-custom-script', '
-        jQuery(document).ready(function($) {
-            $("#_billing_city").select2();
-        });
-        });
-    ');
+
 }
 add_action('admin_enqueue_scripts', 'enqueue_admin_custom_script');

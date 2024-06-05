@@ -10,6 +10,10 @@ jQuery(document).ready(function($) {
         $.each(cities, function(index, city) {
             cityDropdown.append($('<option></option>').attr('value', city).text(city));
         });
+
+        // Initialize Select2 on the dropdown
+        cityDropdown.select2();
+
         return cityDropdown;
     }
 
@@ -26,6 +30,9 @@ jQuery(document).ready(function($) {
     
                 // Set the value of the dropdown to the current city
                 cityField.val(currentCity);
+
+                // Initialize Select2 on the dropdown
+                cityField.select2();
             }
     
             // Update city dropdown on country change
@@ -34,6 +41,9 @@ jQuery(document).ready(function($) {
                 if (citiesData[selectedCountry]) {
                     cityField.replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
                     cityField = $('#' + fieldName); // Update the reference to the city field
+
+                    // Initialize Select2 on the dropdown
+                    cityField.select2();
                 } else {
                     cityField.replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
                     cityField = $('#' + fieldName); // Update the reference to the city field
