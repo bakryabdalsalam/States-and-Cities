@@ -5,20 +5,13 @@ jQuery(document).ready(function($) {
     }
 
     // Function to create dropdown
-function createCityDropdown(cities, fieldName) {
-    var cityDropdown = $('<select></select>').attr('name', fieldName).attr('id', fieldName);
-    $.each(cities, function(index, city) {
-        cityDropdown.append($('<option></option>').attr('value', city).text(city));
-    });
-
-    // Initialize Select2 on the dropdown
-    cityDropdown.select2({
-        placeholder: 'Select a city',
-        allowClear: true
-    });
-
-    return cityDropdown;
-}
+    function createCityDropdown(cities, fieldName) {
+        var cityDropdown = $('<select></select>').attr('name', fieldName).attr('id', fieldName);
+        $.each(cities, function(index, city) {
+            cityDropdown.append($('<option></option>').attr('value', city).text(city));
+        });
+        return cityDropdown;
+    }
 
     function replaceCityField(cityField, countryField, fieldName) {
         if (cityField.length > 0 && countryField.length > 0) {
@@ -30,7 +23,6 @@ function createCityDropdown(cities, fieldName) {
             if (initialCountry && citiesData[initialCountry]) {
                 cityField.replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
                 cityField = $('#' + fieldName); // Update the reference to the city field
-                cityField.select2({ placeholder: 'Select a city', allowClear: true }); // Re-initialize Select2
     
                 // Set the value of the dropdown to the current city
                 cityField.val(currentCity);
@@ -42,7 +34,6 @@ function createCityDropdown(cities, fieldName) {
                 if (citiesData[selectedCountry]) {
                     cityField.replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
                     cityField = $('#' + fieldName); // Update the reference to the city field
-                    cityField.select2({ placeholder: 'Select a city', allowClear: true }); // Re-initialize Select2
                 } else {
                     cityField.replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
                     cityField = $('#' + fieldName); // Update the reference to the city field
