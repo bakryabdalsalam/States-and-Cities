@@ -344,7 +344,14 @@ function enqueue_admin_custom_script($hook)
     // Enable select2 search functionality
     wp_add_inline_script('admin-custom-script', '
         jQuery(document).ready(function($) {
-            $("#_shipping_city, #_billing_city").select2();
+            $("#_shipping_city").select2();
+        });
+        });
+    ');
+    // Enable select2 search functionality
+    wp_add_inline_script('admin-custom-script', '
+        jQuery(document).ready(function($) {
+            $("#_billing_city").select2();
         });
         });
     ');
