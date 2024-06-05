@@ -25,12 +25,12 @@ jQuery(document).ready(function($) {
             // Initial replacement
             var initialCountry = countryField.val();
             if (initialCountry && citiesData[initialCountry]) {
-                cityField.empty().replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
-                cityField = $('#' + fieldName); // Update the reference to the city field
+                cityField.replaceWith(createCityDropdown(citiesData[initialCountry], fieldName));
+                cityField = $('select#' + fieldName); // Update the reference to the city field
     
                 // Set the value of the dropdown to the current city
                 cityField.val(currentCity);
-
+    
                 // Initialize Select2 on the dropdown
                 cityField.select2();
             }
@@ -39,14 +39,14 @@ jQuery(document).ready(function($) {
             countryField.on('change', function() {
                 var selectedCountry = $(this).val();
                 if (citiesData[selectedCountry]) {
-                    cityField.empty().replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
-                    cityField = $('#' + fieldName); // Update the reference to the city field
-
+                    cityField.replaceWith(createCityDropdown(citiesData[selectedCountry], fieldName));
+                    cityField = $('select#' + fieldName); // Update the reference to the city field
+    
                     // Initialize Select2 on the dropdown
                     cityField.select2();
                 } else {
-                    cityField.empty().replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
-                    cityField = $('#' + fieldName); // Update the reference to the city field
+                    cityField.replaceWith('<input type="text" name="' + fieldName + '" id="' + fieldName + '" />');
+                    cityField = $('input#' + fieldName); // Update the reference to the city field
                 }
             });
         }
