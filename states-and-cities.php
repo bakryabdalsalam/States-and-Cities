@@ -340,5 +340,12 @@ function enqueue_admin_custom_script($hook)
 
     // Pass the cities to the script
     wp_localize_script('admin-custom-script', 'citiesData', techiepress_my_cities([]));
+
+    // Enable select2 search functionality
+    wp_add_inline_script('admin-custom-script', '
+        jQuery(document).ready(function($) {
+            $("#_shipping_city").select2();
+        });
+    ');
 }
 add_action('admin_enqueue_scripts', 'enqueue_admin_custom_script');
